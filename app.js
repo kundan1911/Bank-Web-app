@@ -9,7 +9,12 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended:true}))
 
 
-mongoose.connect("mongodb://localhost:27017/bankDB");
+mongoose.connect("mongodb+srv://admin-kundan:Kundan%4019@cluster0.0qyqn.mongodb.net/BankDB?retryWrites=true&w=majority");
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
 function populateDB(){
 const cust1={
     first:"Kundan",
